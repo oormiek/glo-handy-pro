@@ -1,0 +1,23 @@
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: glo-handy-backend
+    ports:
+      - "8083:8082"
+    environment:
+      SPRING_DATASOURCE_URL: ${DATABASE_URL:-jdbc:postgresql://host.docker.internal:5434/glo_handy}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:?Set DB_USERNAME in your environment}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in your environment}
+      SERVER_PORT: 8082
+      ADMIN_USERNAME: ${ADMIN_USERNAME:?Set ADMIN_USERNAME in your environment}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in your environment}
+      MAIL_HOST: ${MAIL_HOST:-smtp.gmail.com}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:?Set MAIL_USERNAME in your environment}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:?Set MAIL_PASSWORD in your environment}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
