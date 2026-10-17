@@ -1,0 +1,51 @@
+
+name: GLO HANDY PRO CI
+
+on:
+  push:
+    branches:
+      - learning/first-ci-pipeline
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  frontend-build:
+    name: Build React frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+
+  backend-test:
+    name: Build and test Java backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+          cache-dependency-path: backend/pom.xml
+
+      - name: Run Maven tests
+        working-directory: backend
+        run: mvn --batch-mode verify

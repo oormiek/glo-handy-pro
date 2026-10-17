@@ -1,9 +1,10 @@
 
 package com.glo.handypro;
 
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -18,6 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.core.env.Environment;
 
 @Configuration
 public class SecurityConfig {
@@ -29,13 +31,11 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(
-            PasswordEncoder passwordEncoder) {
+            PasswordEncoder passwordEncoder,
+            @Value("${ADMIN_USERNAME:}") String username,
+            @Value("${ADMIN_PASSWORD:}") String password) {
 
-        String username = System.getenv("ADMIN_USERNAME");
-        String password = System.getenv("ADMIN_PASSWORD");
-
-        if (username == null || username.isBlank()
-                || password == null || password.isBlank()) {
+        if (username.isBlank() || password.isBlank()) {
             throw new IllegalStateException(
                 "Set ADMIN_USERNAME and ADMIN_PASSWORD before starting the backend."
             );
@@ -50,19 +50,20 @@ public class SecurityConfig {
     }
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource(
+            Environment environment) {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        String allowedOrigins = System.getenv().getOrDefault(
-                "CORS_ALLOWED_ORIGINS",
-                "http://localhost:5173"
+        String allowedOrigins = environment.getProperty(
+            "CORS_ALLOWED_ORIGINS",
+            "http://localhost:5173"
         );
 
         configuration.setAllowedOrigins(
-        Arrays.stream(allowedOrigins.split(","))
-            .map(String::trim)
-            .filter(origin -> !origin.isEmpty())
-            .toList()
+            Arrays.stream(allowedOrigins.split(","))
+                .map(String::trim)
+                .filter(origin -> !origin.isEmpty())
+                .toList()
         );
 
         configuration.setAllowedMethods(
