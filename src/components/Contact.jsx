@@ -129,7 +129,7 @@ function Contact() {
     <section className="contact" id="contact">
       <div className="contact-header">
         <p className="section-label">GET A QUOTE</p>
-        <h2>Tell us about your project.</h2>
+        <h2>Tell us about your task.</h2>
         <p>
           Send us a few details about the work you need.
           Let us know your preferred visit date and time, too.
@@ -262,7 +262,7 @@ function Contact() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="message">Tell us about your project</label>
+          <label htmlFor="message">Tell us about your task</label>
           <textarea
             id="message"
             name="message"
