@@ -118,35 +118,65 @@ export default function Admin() {
     };
   }
 
+
   async function loadQuotes(event) {
     event.preventDefault();
+
+    // Prevent duplicate login requests.
+    if (loading) return;
+
     setError("");
     setNotice("");
     setLoading(true);
 
+    const controller = new AbortController();
+
+    // Allow up to 75 seconds for a sleeping backend to wake up.
+    const timeoutId = setTimeout(() => controller.abort(), 75000);
+
+    // Give feedback if the server is taking time to respond.
+    const slowRequestId = setTimeout(() => {
+      setError("The server may be waking up. Please wait...");
+    }, 8000);
+
     try {
       const response = await fetch(`${API_URL}/api/admin/quotes`, {
         headers: authHeaders(),
+        signal: controller.signal,
       });
 
       if (response.status === 401 || response.status === 403) {
-        throw new Error("Invalid credentials or access denied.");
+        throw new Error("Invalid username or password, or access denied.");
       }
-      if (!response.ok) throw new Error("Unable to load quote requests.");
+
+      if (!response.ok) {
+        throw new Error(
+          "The server could not load your quote requests. Please try again."
+        );
+      }
 
       const data = await response.json();
       setQuotes(data);
       setAuthenticated(true);
     } catch (err) {
-      setError(
-        err instanceof TypeError
-          ? "Cannot connect to the backend. Check that it is running."
-          : err.message
-      );
+      if (err.name === "AbortError") {
+        setError(
+          "The server took too long to respond. Please wait a moment and try signing in again."
+        );
+      } else if (err instanceof TypeError) {
+        setError(
+          "Unable to connect to the server. It may be starting up. Please wait a moment and try again."
+        );
+      } else {
+        setError(err.message || "Sign-in failed. Please try again.");
+      }
     } finally {
+      clearTimeout(timeoutId);
+      clearTimeout(slowRequestId);
       setLoading(false);
     }
   }
+
 
   async function updateStatus(id, newStatus) {
     const previousQuote = quotes.find((quote) => quote.id === id);

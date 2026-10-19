@@ -108,7 +108,16 @@ button:hover {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.logo-image {
+  display: block;
+  width: 230px;
+  height: auto;
+  max-height: 100px;
+  object-fit: contain;
 }
 
 .logo-glo {
@@ -184,14 +193,30 @@ button:hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+.service-card:hover .service-icon {
+  background: #3a5b7f;
+  transform: translateY(-3px);
 }
 
 .service-icon {
-  font-size: 40px;
-  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 18px;
+  border-radius: 16px;
+  background: #102b49;
+  color: #ffc400;
+  font-size: 30px;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.service-icon svg {
+  width: 27px;
+  height: 27px;
+  stroke: currentColor;
+  stroke-width: 1.8;
 }
 
 .service-card h3 {
@@ -626,92 +651,308 @@ button:hover {
   }
 }
 
+
+/* GLO Handyman Services — Premium Footer */
 .footer {
-  background-color: #062846;
-  color: white;
-  padding: 60px 30px 20px;
+  position: relative;
+  overflow: hidden;
+  padding: 24px 32px 14px;
+  background: linear-gradient(135deg, #062846 0%, #0b355c 100%);
+  color: #ffffff;
   border-top: 4px solid #ffc400;
 }
 
 .footer-content {
-  max-width: 1100px;
+  max-width: 1180px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1.35fr 0.65fr 1.2fr;
+  gap: 32px;
+  align-items: start;
 }
 
-.footer-logo {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-}
-
-.footer-logo span {
-  color: #ffc400;
-  font-size: 34px;
-  margin-right: 8px;
-}
-
-.footer-brand p {
-  color: #d9e0e7;
-  line-height: 1.7;
+.footer-brand {
   max-width: 400px;
 }
 
-.footer h3 {
+.footer-logo-link {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 8px;
+  text-decoration: none;
+}
+
+.footer-logo-image {
+  display: block;
+  width: 175px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-tagline {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.5px;
+}
+
+.footer-tagline span {
+  display: block;
   color: #ffc400;
-  font-size: 19px;
-  margin-bottom: 20px;
+}
+
+.footer-description {
+  max-width: 360px;
+  margin: 0;
+  color: #d5e0eb;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.footer h3 {
+  margin: 4px 0 16px;
+  color: #ffc400;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 13px;
 }
 
 .footer-links a {
-  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: fit-content;
+  color: #e7edf4;
+  font-size: 15px;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-links a span {
+  color: #ffc400;
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .footer-links a:hover {
   color: #ffc400;
+  transform: translateX(3px);
 }
 
-.footer-contact p {
-  color: #d9e0e7;
-  margin: 12px 0;
-  line-height: 1.5;
+.footer-links a:hover span {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.footer-contact-intro {
+  margin: -4px 0 14px;
+  color: #d5e0eb;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.footer-contact-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 9px;
+  padding: 11px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #ffffff;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.footer-contact-link:hover {
+  border-color: #ffc400;
+  background: rgba(255, 196, 0, 0.07);
+  transform: translateY(-2px);
+}
+
+.footer-contact-icon {
+  display: grid;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(255, 196, 0, 0.12);
+  color: #ffc400;
+}
+
+.footer-contact-icon svg {
+  display: block;
+  width: 21px;
+  height: 21px;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.footer-contact-icon .instagram-dot {
+  fill: currentColor;
+  stroke: none;
+}
+
+.footer-contact-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.footer-contact-copy strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.footer-contact-copy > span {
+  color: #c7d4e2;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.footer-contact-arrow {
+  color: #ffc400;
+  font-size: 20px;
+  transition: transform 0.2s ease;
+}
+
+.footer-contact-link:hover .footer-contact-arrow {
+  transform: translate(3px, -3px);
+}
+
+.footer-location {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 14px 0 0;
+  color: #d5e0eb;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.footer-location > span {
+  color: #ffc400;
+  font-size: 22px;
+}
+
+.footer-signature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 1180px;
+  margin: 24px auto 0;
+}
+
+.footer-signature > span {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.footer-signature svg {
+  width: 36px;
+  height: 24px;
+  stroke: #ffc400;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .footer-bottom {
-  max-width: 1100px;
-  margin: 50px auto 0;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  gap: 20px;
-
-  color: #b9c4cf;
-  font-size: 14px;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  max-width: 1180px;
+  margin: 12px auto 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: #b9c9d9;
+  font-size: 12px;
+  line-height: 1.7;
 }
 
-@media (max-width: 768px) {
+.footer-bottom p {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
   .footer-content {
-    grid-template-columns: 1fr;
-    gap: 35px;
+    grid-template-columns: 1fr 1fr;
+    gap: 42px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 26px 20px 16px;
+  }
+
+  .footer-content {
+
+    gap: 22px;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+
+  .footer-logo-image {
+    width: 165px;
+  }
+
+  .footer-tagline {
+    font-size: 20px;
+  }
+
+  .footer h3 {
+    margin-bottom: 12px;
+  }
+
+  .footer-links {
+    gap: 10px;
+  }
+
+  .footer-contact-link {
+    padding: 13px;
+  }
+
+  .footer-signature {
+    margin-top: 18px;
   }
 
   .footer-bottom {
     flex-direction: column;
-    text-align: center;
-    margin-top: 35px;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 8px;
   }
 }
 
@@ -1325,5 +1566,1244 @@ button:hover {
 
   .gallery-card:hover {
     transform: none;
+  }
+}
+
+
+
+
+
+
+/* GLO Handy Pro — consolidated inline date and time picker */
+.datetime-picker,
+.glo-datetime-inline {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.glo-datetime-inline .glo-datetime-panel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid #e5eaf0;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgb(6 40 70 / 8%);
+}
+
+.glo-datetime-inline .glo-datetime-banner {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #062846, #102f50);
+  color: #fff;
+}
+
+.glo-datetime-inline .glo-calendar-icon {
+  display: grid;
+  flex: 0 0 68px;
+  width: 68px;
+  height: 68px;
+  place-items: center;
+  border-radius: 18px;
+  background: #ffc400;
+  color: #062846;
+  font-size: 34px;
+}
+
+.glo-datetime-inline .glo-brand {
+  margin: 0 0 8px;
+  color: #ffc400;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.glo-datetime-inline .glo-datetime-banner h2 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.2;
+}
+
+.glo-datetime-inline .glo-datetime-banner p:last-child {
+  margin: 0;
+  color: #d6e0eb;
+  line-height: 1.6;
+}
+
+.glo-datetime-inline .glo-datetime-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+}
+
+.glo-datetime-inline .glo-calendar-section,
+.glo-datetime-inline .glo-clock-section {
+  min-width: 0;
+  padding: 26px 24px;
+  box-sizing: border-box;
+}
+
+.glo-datetime-inline .glo-calendar-section {
+  border-right: 1px solid #e5eaf0;
+}
+
+.glo-datetime-inline .glo-month-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.glo-datetime-inline .glo-month-header h3,
+.glo-datetime-inline .glo-clock-section h3 {
+  margin: 0;
+  color: #062846;
+  font-size: 20px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.glo-datetime-inline .glo-month-header button {
+  display: grid;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid #e1e7ef;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #062846;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.glo-datetime-inline .glo-month-header button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.glo-datetime-inline .glo-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+  text-align: center;
+}
+
+.glo-datetime-inline .glo-weekday {
+  min-width: 0;
+  padding: 7px 0;
+  color: #718096;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.glo-datetime-inline .glo-calendar-day {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
+  padding: 0;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: #062846;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.glo-datetime-inline .glo-calendar-day:hover:not(:disabled) {
+  border-color: #ffc400;
+  background: #fff9df;
+}
+
+.glo-datetime-inline .glo-calendar-day.today {
+  border-color: #ffc400;
+  font-weight: 800;
+}
+
+.glo-datetime-inline .glo-calendar-day.selected {
+  background: #ffc400;
+  color: #062846;
+  font-weight: 800;
+}
+
+.glo-datetime-inline .glo-calendar-day.past,
+.glo-datetime-inline .glo-calendar-day:disabled {
+  color: #b9c2ce;
+  cursor: not-allowed;
+}
+
+.glo-datetime-inline .glo-picker-hint {
+  margin: 18px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f3f6fa;
+  color: #536780;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.glo-datetime-inline .glo-clock-section > p:not(.glo-picker-hint) {
+  margin: 8px 0 20px;
+  color: #718096;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.glo-datetime-inline .glo-clock-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.glo-datetime-inline .glo-clock-face {
+  position: relative;
+  width: min(100%, 250px);
+  min-width: 0;
+  flex: 0 1 250px;
+  aspect-ratio: 1;
+  border: 2px solid #ffebad;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffdf5, #fff 70%);
+  box-shadow: 0 0 0 7px #fff9e8;
+}
+
+.glo-datetime-inline .glo-clock-number {
+  position: absolute;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #526680;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.glo-datetime-inline .glo-clock-number:hover {
+  background: #fff1bf;
+}
+
+.glo-datetime-inline .glo-clock-number.active {
+  background: #062846;
+  color: #fff;
+  font-weight: 800;
+}
+
+.glo-datetime-inline .glo-clock-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #ffc400;
+  pointer-events: none;
+}
+
+.glo-datetime-inline .glo-period-switch {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #e1e7ef;
+  border-radius: 14px;
+}
+
+.glo-datetime-inline .glo-period-switch button {
+  min-width: 54px;
+  min-height: 48px;
+  padding: 10px 7px;
+  border: 0;
+  border-radius: 0;
+  background: #f8fafc;
+  color: #062846;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.glo-datetime-inline .glo-period-switch button.active {
+  background: #ffc400;
+  font-weight: 800;
+}
+
+.glo-datetime-inline .glo-time-readout {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.glo-datetime-inline .glo-time-readout label {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  color: #718096;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.glo-datetime-inline .glo-time-readout select {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 9px 10px;
+  border: 1px solid #dce3ec;
+  border-radius: 10px;
+  background: #fff;
+  color: #062846;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.glo-datetime-inline .glo-time-readout > span {
+  padding-bottom: 10px;
+  color: #062846;
+  font-size: 22px;
+}
+
+.glo-datetime-inline .glo-picker-error {
+  margin: 0 24px 16px;
+  padding: 12px 16px;
+  border: 1px solid #ffc8c8;
+  border-radius: 10px;
+  background: #fff3f3;
+  color: #b42318;
+}
+
+.glo-datetime-inline .datetime-picker-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  margin: 0;
+  padding: 18px 24px;
+  border-top: 1px solid #edf0f4;
+}
+
+.glo-datetime-inline .datetime-picker-actions button {
+  width: auto;
+  min-width: 140px;
+  min-height: 44px;
+  padding: 11px 20px;
+  border: 1px solid #dce3ec;
+  border-radius: 24px;
+  background: #f8fafc;
+  color: #062846;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.glo-datetime-inline .datetime-picker-actions button:last-child {
+  border-color: #ffc400;
+  background: #ffc400;
+  color: #062846;
+}
+
+.glo-datetime-inline .datetime-picker-actions button:hover {
+  filter: brightness(0.97);
+}
+
+.glo-datetime-inline .datetime-picker-required {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glo-datetime-inline .glo-selection-summary {
+  margin: 0;
+  padding: 0 24px 20px;
+  color: #062846;
+  text-align: center;
+}
+
+/* Keep two columns when there is enough room; stack on narrow screens. */
+@media (max-width: 680px) {
+  .glo-datetime-inline .glo-datetime-banner {
+    align-items: flex-start;
+    gap: 14px;
+    padding: 22px 18px;
+  }
+
+  .glo-datetime-inline .glo-calendar-icon {
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    font-size: 25px;
+  }
+
+  .glo-datetime-inline .glo-datetime-banner h2 {
+    font-size: 22px;
+  }
+
+  .glo-datetime-inline .glo-datetime-banner p:last-child {
+    font-size: 14px;
+  }
+
+  .glo-datetime-inline .glo-datetime-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .glo-datetime-inline .glo-calendar-section,
+  .glo-datetime-inline .glo-clock-section {
+    padding: 22px 20px;
+  }
+
+  .glo-datetime-inline .glo-calendar-section {
+    border-right: 0;
+    border-bottom: 1px solid #e5eaf0;
+  }
+
+  .glo-datetime-inline .glo-month-header h3 {
+    font-size: 19px;
+  }
+
+  .glo-datetime-inline .glo-weekday {
+    font-size: 12px;
+  }
+
+  .glo-datetime-inline .glo-calendar-day {
+    font-size: 15px;
+  }
+
+  .glo-datetime-inline .glo-clock-layout {
+    gap: 16px;
+  }
+
+  .glo-datetime-inline .glo-clock-face {
+    width: min(68vw, 270px);
+    flex-basis: min(68vw, 270px);
+  }
+
+  .glo-datetime-inline .glo-clock-number {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .glo-datetime-inline .glo-period-switch button {
+    min-width: 58px;
+    min-height: 52px;
+    font-size: 16px;
+  }
+
+  .glo-datetime-inline .glo-time-readout {
+    max-width: 360px;
+    margin: 24px auto 0;
+  }
+
+  .glo-datetime-inline .datetime-picker-actions {
+    justify-content: stretch;
+    padding: 16px 20px;
+  }
+
+  .glo-datetime-inline .datetime-picker-actions button {
+    flex: 1 1 140px;
+  }
+
+  .glo-datetime-inline .glo-picker-error {
+    margin: 0 20px 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .glo-datetime-inline .glo-datetime-banner {
+    flex-direction: column;
+  }
+
+  .glo-datetime-inline .glo-clock-layout {
+    gap: 10px;
+  }
+
+  .glo-datetime-inline .glo-clock-face {
+    width: min(66vw, 230px);
+    flex-basis: min(66vw, 230px);
+  }
+
+  .glo-datetime-inline .glo-clock-number {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .glo-datetime-inline .glo-period-switch button {
+    min-width: 48px;
+    min-height: 46px;
+    padding: 8px 5px;
+  }
+
+  .glo-datetime-inline .glo-time-readout {
+    gap: 7px;
+  }
+
+  .glo-datetime-inline .datetime-picker-actions {
+    flex-direction: column;
+  }
+
+  .glo-datetime-inline .datetime-picker-actions button {
+    width: 100%;
+  }
+}
+
+
+
+/* Final clock layout correction */
+.glo-datetime-inline .glo-datetime-content {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: stretch;
+}
+
+.glo-datetime-inline .glo-calendar-section,
+.glo-datetime-inline .glo-clock-section {
+  min-width: 0 !important;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px !important;
+}
+
+.glo-datetime-inline .glo-month-header {
+  display: grid !important;
+  grid-template-columns: 36px minmax(0, 1fr) 36px;
+  align-items: center;
+  gap: 8px;
+}
+
+.glo-datetime-inline .glo-month-header h3 {
+  min-width: 0;
+  text-align: center;
+  overflow-wrap: anywhere;
+  font-size: clamp(15px, 1.5vw, 20px) !important;
+}
+
+.glo-datetime-inline .glo-calendar-grid {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 4px !important;
+  width: 100%;
+}
+
+.glo-datetime-inline .glo-weekday {
+  white-space: nowrap;
+  font-size: clamp(9px, 1vw, 12px) !important;
+}
+
+.glo-datetime-inline .glo-clock-layout {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 16px !important;
+  width: 100%;
+}
+
+.glo-datetime-inline .glo-clock-face {
+  position: relative !important;
+  display: block;
+  width: min(100%, 240px) !important;
+  max-width: 240px;
+  min-width: 0;
+  flex: 0 1 240px !important;
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+.glo-datetime-inline .glo-clock-number {
+  position: absolute !important;
+  display: grid !important;
+  width: 34px !important;
+  height: 34px !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  place-items: center;
+  border: 0 !important;
+  border-radius: 50% !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  box-sizing: border-box;
+}
+
+.glo-datetime-inline .glo-period-switch {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  gap: 8px;
+  overflow: visible;
+  border: 0 !important;
+}
+
+.glo-datetime-inline .glo-period-switch button {
+  min-width: 72px !important;
+  min-height: 42px;
+  border: 1px solid #e1e7ef !important;
+  border-radius: 22px !important;
+}
+
+.glo-datetime-inline .glo-time-readout {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: end;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.glo-datetime-inline .glo-time-readout label {
+  min-width: 0;
+  width: 100%;
+}
+
+.glo-datetime-inline .glo-time-readout select {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.glo-datetime-inline .datetime-picker-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.glo-datetime-inline .datetime-picker-actions button {
+  width: auto !important;
+  min-width: 140px;
+  max-width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 680px) {
+  .glo-datetime-inline .glo-datetime-content {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .glo-datetime-inline .glo-calendar-section {
+    border-right: 0 !important;
+    border-bottom: 1px solid #e5eaf0;
+  }
+
+  .glo-datetime-inline .glo-calendar-section,
+  .glo-datetime-inline .glo-clock-section {
+    padding: 20px 16px !important;
+  }
+
+  .glo-datetime-inline .glo-clock-face {
+    width: min(72vw, 260px) !important;
+    flex-basis: min(72vw, 260px) !important;
+  }
+
+  .glo-datetime-inline .datetime-picker-actions {
+    flex-direction: column !important;
+    align-items: stretch;
+  }
+
+  .glo-datetime-inline .datetime-picker-actions button {
+    width: 100% !important;
+  }
+}
+
+
+/* GLO Handy Pro — popup date/time picker */
+.glo-date-picker {
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+}
+
+.glo-date-picker-trigger {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 76px;
+  padding: 14px 18px;
+  border: 1px solid #d7e0e9;
+  border-radius: 12px;
+  background: #fff;
+  color: #062846;
+  text-align: left;
+  box-shadow: 0 2px 8px rgb(6 40 70 / 4%);
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+.glo-date-picker-trigger:hover,
+.glo-date-picker-trigger:focus-visible {
+  background: #fff;
+  border-color: #ffc400;
+  box-shadow: 0 0 0 3px rgb(255 196 0 / 18%);
+  outline: none;
+}
+
+.glo-date-picker-trigger-icon {
+  display: grid;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 12px;
+  background: #fff4c2;
+  color: #062846;
+  font-size: 25px;
+}
+
+.glo-date-picker-trigger-copy {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.glo-date-picker-trigger-copy strong {
+  color: #062846;
+  font-size: 16px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.glo-date-picker-trigger-copy small {
+  color: #637184;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.glo-date-picker-trigger-arrow {
+  color: #062846;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.glo-date-picker-overlay {
+  position: fixed;
+  z-index: 10050;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgb(4 19 34 / 64%);
+  backdrop-filter: blur(3px);
+}
+
+.glo-date-picker-dialog {
+  display: flex;
+  flex-direction: column;
+  width: min(760px, calc(100vw - 48px));
+  max-height: min(860px, calc(100dvh - 48px));
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 20px;
+  background: #fff;
+  color: #062846;
+  text-align: left;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 30%);
+  animation: glo-date-picker-enter .18s ease-out;
+}
+
+@keyframes glo-date-picker-enter {
+  from { opacity: 0; transform: translateY(8px) scale(.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.glo-date-picker-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 23px 26px 20px;
+  background: linear-gradient(120deg, #062846, #123b61);
+  color: #fff;
+}
+
+.glo-date-picker-header h2 {
+  margin: 6px 0 7px;
+  color: #fff;
+  font-size: clamp(21px, 2.8vw, 27px);
+  line-height: 1.2;
+}
+
+.glo-date-picker-header p {
+  margin: 0;
+  color: #dce6ef;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.glo-date-picker-eyebrow {
+  color: #ffc400;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.glo-date-picker-close {
+  display: grid;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 10%);
+  color: #fff;
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.glo-date-picker-close:hover {
+  background: rgb(255 255 255 / 20%);
+}
+
+.glo-date-picker-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.glo-date-calendar,
+.glo-date-time {
+  min-width: 0;
+  padding: 24px 25px 22px;
+  text-align: left;
+}
+
+.glo-date-calendar {
+  border-right: 1px solid #e8edf2;
+}
+
+.glo-date-month {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) 38px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.glo-date-month h3 {
+  margin: 0;
+  color: #062846;
+  font-size: 17px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.glo-date-month button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid #e1e7ee;
+  border-radius: 10px;
+  background: #fff;
+  color: #062846;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.glo-date-month button:hover:not(:disabled) {
+  background: #fff4c2;
+}
+
+.glo-date-month button:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.glo-date-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.glo-date-weekday {
+  display: grid;
+  height: 30px;
+  place-items: center;
+  color: #788698;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.glo-date-empty {
+  aspect-ratio: 1 / 1;
+}
+
+.glo-date-day {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: #fff;
+  color: #183752;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.glo-date-day:hover:not(:disabled) {
+  border-color: #ffc400;
+  background: #fff8d9;
+}
+
+.glo-date-day.today {
+  border-color: #d6a600;
+  font-weight: 800;
+}
+
+.glo-date-day.selected,
+.glo-date-day.selected:hover {
+  border-color: #062846;
+  background: #062846;
+  color: #fff;
+  font-weight: 800;
+}
+
+.glo-date-day:disabled {
+  background: transparent;
+  color: #c3cbd4;
+  cursor: not-allowed;
+}
+
+.glo-date-helper {
+  margin: 15px 0 0;
+  color: #718094;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.glo-date-time h3 {
+  margin: 0 0 7px;
+  color: #062846;
+  font-size: 18px;
+}
+
+.glo-date-time-summary {
+  margin: 0 0 20px;
+  color: #718094;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.glo-time-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 16px;
+  border: 1px solid #e5eaf0;
+  border-radius: 13px;
+  background: #f7f9fb;
+}
+
+.glo-time-preview span {
+  color: #a77f00;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.glo-time-preview strong {
+  color: #062846;
+  font-size: 26px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.glo-time-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 12px minmax(0, 1fr);
+  align-items: end;
+  gap: 8px;
+}
+
+.glo-time-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #40546a;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.glo-time-fields select {
+  width: 100%;
+  min-width: 0;
+  height: 46px;
+  padding: 0 10px;
+  border: 1px solid #d7e0e9;
+  border-radius: 9px;
+  background: #fff;
+  color: #062846;
+  font: inherit;
+  font-size: 16px;
+}
+
+.glo-time-fields select:focus {
+  outline: 2px solid rgb(255 196 0 / 65%);
+  outline-offset: 1px;
+  border-color: #c49a00;
+}
+
+.glo-time-colon {
+  padding-bottom: 13px;
+  color: #062846;
+  font-size: 20px;
+  text-align: center;
+}
+
+.glo-time-period {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.glo-time-period button {
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid #d7e0e9;
+  border-radius: 9px;
+  background: #fff;
+  color: #062846;
+  font-size: 14px;
+}
+
+.glo-time-period button.active {
+  border-color: #062846;
+  background: #062846;
+  color: #fff;
+}
+
+.glo-time-period button:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.glo-date-error {
+  margin: 0;
+  padding: 12px 25px;
+  background: #fff1f1;
+  color: #b42318;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.glo-date-picker-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  border-top: 1px solid #e8edf2;
+  background: #fbfcfd;
+}
+
+.glo-date-picker-footer p {
+  margin: 0;
+  color: #53667b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.glo-date-picker-footer p strong {
+  color: #062846;
+}
+
+.glo-date-picker-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.glo-date-picker-actions button {
+  min-height: 42px;
+  padding: 10px 17px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.glo-date-picker-actions .glo-date-cancel {
+  border: 1px solid #d7e0e9;
+  background: #fff;
+  color: #334b62;
+}
+
+.glo-date-picker-actions .glo-date-cancel:hover {
+  background: #f2f5f8;
+}
+
+.glo-date-picker-actions .glo-date-confirm {
+  background: #ffc400;
+  color: #062846;
+}
+
+.glo-date-picker-actions .glo-date-confirm:hover {
+  background: #e5ae00;
+}
+
+.glo-date-picker button:focus-visible {
+  outline: 3px solid rgb(255 196 0 / 80%);
+  outline-offset: 2px;
+}
+
+@media (max-width: 680px) {
+  .glo-date-picker-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .glo-date-picker-dialog {
+    width: 100%;
+    max-height: 94dvh;
+    border-radius: 20px 20px 0 0;
+    border-bottom: 0;
+    animation: glo-date-picker-sheet-enter .2s ease-out;
+  }
+
+  @keyframes glo-date-picker-sheet-enter {
+    from { opacity: .75; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .glo-date-picker-header {
+    padding: 19px 18px 17px;
+  }
+
+  .glo-date-picker-header h2 {
+    font-size: 22px;
+  }
+
+  .glo-date-picker-body {
+    grid-template-columns: minmax(0, 1fr);
+    overflow-y: auto;
+  }
+
+  .glo-date-calendar,
+  .glo-date-time {
+    padding: 19px 20px;
+  }
+
+  .glo-date-calendar {
+    border-right: 0;
+    border-bottom: 1px solid #e8edf2;
+  }
+
+  .glo-date-grid {
+    gap: 4px;
+  }
+
+  .glo-date-day {
+    max-height: 42px;
+    font-size: 14px;
+  }
+
+  .glo-date-picker-footer {
+    position: sticky;
+    bottom: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    box-shadow: 0 -5px 16px rgb(6 40 70 / 6%);
+  }
+
+  .glo-date-picker-footer p {
+    text-align: center;
+  }
+
+  .glo-date-picker-actions {
+    display: grid;
+    grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+    gap: 9px;
+  }
+
+  .glo-date-picker-actions button {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .glo-date-picker-header p {
+    max-width: 270px;
+  }
+
+  .glo-date-calendar,
+  .glo-date-time {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .glo-date-picker-footer {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .glo-date-picker-actions button {
+    font-size: 13px;
   }
 }

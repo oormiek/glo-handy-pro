@@ -33,3 +33,7 @@ backend/.env.*
 
 # Local troubleshooting logs
 backend/startup-error.txt
+
+# Local Spring Boot development configuration
+backend/run-local.ps1
+backend/src/main/resources/application-local.properties

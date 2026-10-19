@@ -2,10 +2,13 @@
 function Navbar() {
   return (
     <nav className="navbar">
-      <div className="logo">
-        <span className="logo-glo">GLO</span>
-        <span className="logo-text">HANDYMAN SERVICES</span>
-      </div>
+      <a href="#home" className="logo" aria-label="GLO Handyman Services home">
+        <img
+          src="/glo-primary-logo.png"
+          alt="GLO Handyman Services"
+          className="logo-image"
+        />
+      </a>
 
       <div className="nav-links">
         <a href="#home">Home</a>
