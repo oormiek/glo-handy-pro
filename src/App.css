@@ -547,6 +547,7 @@ button:hover {
 .contact {
   padding: 90px 30px;
   background-color: #f7f9fb;
+  border-top: 100px solid #ffffff;
 }
 
 .contact-header {

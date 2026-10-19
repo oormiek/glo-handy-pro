@@ -8,6 +8,7 @@ import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Admin from "./components/Admin";
+import Testimonials from './components/Testimonials';
 
 function App() {
   if (window.location.pathname === "/admin") {
@@ -22,6 +23,7 @@ function App() {
         <Services />
         <About />
         <Gallery />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />

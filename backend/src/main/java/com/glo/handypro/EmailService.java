@@ -122,7 +122,7 @@ public class EmailService {
                     .append(NAVY)
                     .append(";padding:13px 22px;border-radius:6px;"
                             + "text-decoration:none;font-weight:bold;'>")
-                    .append("★ Leave us a Google Review")
+                    .append("★ Share Your Feedback")
                     .append("</a></p>");
         }
 
