@@ -3,33 +3,42 @@ package com.glo.handypro;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Set;
 
-import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class QuoteRequest {
 
+    private static final Set<String> APPROVED_EMAIL_DOMAINS = Set.of(
+        "gmail.com",
+        "outlook.com",
+        "hotmail.com",
+        "live.com",
+        "msn.com",
+        "yahoo.com",
+        "yahoo.ca",
+        "icloud.com",
+        "me.com",
+        "mac.com"
+    );
+
     @NotBlank(message = "Name is required")
-    @Size(min = 2, max = 80, message = "Name must be between 2 and 80 characters")
+    @Size(min = 2, max = 80,
+        message = "Name must be between 2 and 80 characters")
     @Pattern(
         regexp = "^[\\p{L}][\\p{L}\\p{M} .'-]*$",
         message = "Name can contain letters, spaces, apostrophes and hyphens only"
     )
     private String name;
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Please provide a valid email")
-    @Pattern(
-        regexp = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$",
-        message = "Email must include a valid domain, such as example.com"
-    )
     private String email;
 
-    @NotBlank(message = "Phone is required")
     @Pattern(
-        regexp = "^(?:\\+?1[ .-]?)?(?:\\([2-9]\\d{2}\\)|[2-9]\\d{2})[ .-]?[2-9]\\d{2}[ .-]?\\d{4}$",
+        regexp = "^(?:\\s*|(?:\\+?1[ .-]?)?(?:\\([2-9]\\d{2}\\)|[2-9]\\d{2})[ .-]?[2-9]\\d{2}[ .-]?\\d{4})$",
         message = "Enter a valid 10-digit North American phone number"
     )
     private String phone;
@@ -49,8 +58,10 @@ public class QuoteRequest {
     )
     private String message;
 
+    @NotNull(message = "Preferred visit date is required")
     private LocalDate preferredDate;
 
+    @NotNull(message = "Preferred visit time is required")
     private LocalTime preferredTime;
 
     public QuoteRequest() {
@@ -67,6 +78,34 @@ public class QuoteRequest {
         this.phone = phone;
         this.service = service;
         this.message = message;
+    }
+
+    @AssertTrue(message = "Please enter an email address or phone number.")
+    public boolean isContactMethodProvided() {
+        return (email != null && !email.isBlank())
+            || (phone != null && !phone.isBlank());
+    }
+
+    @AssertTrue(message = "Please provide a valid email address.")
+    public boolean isEmailValid() {
+        if (email == null || email.isBlank()) {
+            return true;
+        }
+
+        String normalizedEmail = email.trim().toLowerCase();
+        String[] parts = normalizedEmail.split("@", -1);
+
+        if (parts.length != 2) {
+            return false;
+        }
+
+        String domain = parts[1];
+
+        boolean validFormat = normalizedEmail.matches(
+            "^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*\\.[A-Za-z]{2,}$"
+        );
+
+        return validFormat && APPROVED_EMAIL_DOMAINS.contains(domain);
     }
 
     public String getName() {

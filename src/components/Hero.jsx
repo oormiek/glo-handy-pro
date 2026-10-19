@@ -8,7 +8,7 @@ function Hero() {
         <h1>
           Small jobs to big tasks...
           <br />
-          <span>I've got you covered!</span>
+          <span>We've got you covered!</span>
         </h1>
 
         <p className="hero-description">
