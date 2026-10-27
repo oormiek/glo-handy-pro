@@ -9,6 +9,11 @@ import work06 from '../assets/work-photos/work-06.jpeg';
 import work07 from '../assets/work-photos/work-07.jpeg';
 import work08 from '../assets/work-photos/work-08.jpeg';
 import work09 from '../assets/work-photos/work-09.jpeg';
+import work10 from '../assets/work-photos/work-10.jpg';
+import work11 from '../assets/work-photos/work-11.jpg';
+import work12 from '../assets/work-photos/work-12.jpg';
+import work13 from '../assets/work-photos/work-13.jpg';
+import work14 from '../assets/work-photos/work-14.jpg';
 
 const galleryItems = [
   { image: work01, title: 'Our Work 01' },
@@ -20,6 +25,11 @@ const galleryItems = [
   { image: work07, title: 'Our Work 07' },
   { image: work08, title: 'Our Work 08' },
   { image: work09, title: 'Our Work 09' },
+  { image: work10, title: 'Our Work 10' },
+  { image: work11, title: 'Our Work 11' },
+  { image: work12, title: 'Our Work 12' },
+  { image: work13, title: 'Our Work 13' },
+  { image: work14, title: 'Our Work 14' },
 ];
 
 
